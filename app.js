@@ -12,7 +12,7 @@ var users = require('./routes/users');
 
 var mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/users');
-mongoose.connect('mongodb://<heroku>:<e1543f2b86ac35a5f61cca97c5c48db0>@linus.mongohq.com:10079/app30642759/users');
+mongoose.connect('mongodb://heroku:e1543f2b86ac35a5f61cca97c5c48db0@linus.mongohq.com:10079/app30642759/users');
 
 var app = express(); 
 
