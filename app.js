@@ -12,7 +12,7 @@ var users = require('./routes/users');
 
 var mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/users');
-mongoose.connect('mongodb://heroku:e1543f2b86ac35a5f61cca97c5c48db0@linus.mongohq.com:10079/app30642759/users');
+// mongoose.connect('mongodb://heroku:e1543f2b86ac35a5f61cca97c5c48db0@linus.mongohq.com:10079/app30642759/users');
 
 var app = express(); 
 
@@ -20,14 +20,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-var Schema = mongoose.Schema;
-var UserDetail = new Schema({
-      username: String,
-      password: String
-    }, {
-      collection: 'users'
-    });
-var UserDetails = mongoose.model('userInfo', UserDetail);
+// var Schema = mongoose.Schema;
+// var UserDetail = new Schema({
+//       username: String,
+//       password: String
+//     }, {
+//       collection: 'users'
+//     });
+// var UserDetails = mongoose.model('userInfo', UserDetail);
 
 
 // view engine setup
@@ -80,25 +80,25 @@ passport.deserializeUser(function(user, done) {
 passport.use(new LocalStrategy(function(username, password, done) {
   process.nextTick(function() {
     
-    global.username = username;
+  //   global.username = username;
 
-    UserDetails.findOne({
-      'username': username, 
-    }, function(err, user) {
-      if (err) {
-        return done(err);
-      }
+  //   UserDetails.findOne({
+  //     'username': username, 
+  //   }, function(err, user) {
+  //     if (err) {
+  //       return done(err);
+  //     }
  
-      if (!user) {
-        return done(null, false);
-      }
+  //     if (!user) {
+  //       return done(null, false);
+  //     }
  
-      if (user.password != password) {
-        return done(null, false);
-      }
+  //     if (user.password != password) {
+  //       return done(null, false);
+  //     }
  
-      return done(null, user);
-    });
+  //     return done(null, user);
+  //   });
   });
 }));
 
