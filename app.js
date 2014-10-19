@@ -11,23 +11,28 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/users');
-mongoose.connect('mongodb://aurel:logica00@linus.mongohq.com:10079/app30642759/users');
+mongoose.connect('mongodb://localhost/users');
+// mongoose.connect('mongodb://aurel:logica00@linus.mongohq.com:10079/app30642759/users');
 
 var app = express(); 
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+// var config = require('./config')();
+// http.createServer(app).listen(config.port, function(){
+//     console.log('Express server listening on port ' + config.port);
+// });
 
+// database connection for login
 var Schema = mongoose.Schema;
-var UserDetail = new Schema({
+var User = new Schema({
       username: String,
       password: String
     }, {
       collection: 'users'
     });
-var UserDetails = mongoose.model('userInfo', UserDetail);
+var users = mongoose.model('userInfo', User);
 
 
 // view engine setup
@@ -48,8 +53,6 @@ app.use('/', routes);
 
 
 // passport login
-
-
 app.get('/login', function(req, res) {
   res.render('login'); 
 });
@@ -82,7 +85,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
     
     global.username = username;
 
-    UserDetails.findOne({
+    users.findOne({
       'username': username, 
     }, function(err, user) {
       if (err) {
