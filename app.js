@@ -11,8 +11,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/users');
-// mongoose.connect('mongodb://aurel:logica00@linus.mongohq.com:10079/app30642759/users');
+// mongoose.connect('mongodb://localhost/users');
+mongoose.connect('mongodb://aurel:logica00@linus.mongohq.com:10079/app30642759/users');
 
 var app = express(); 
 
